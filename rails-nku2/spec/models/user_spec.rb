@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 FactoryGirl.define do
-  factory :student do
+  factory :user do
     sequence(:name) {|n| "Student Name #{n}"}
     sequence(:email) {|n| "test-#{n}@example.com"}
     password "password"
@@ -9,48 +9,48 @@ FactoryGirl.define do
   end
 end
 
-describe Student do
+describe User do
   let(:now) { Date.today }
 
   describe ".in_seat" do
-    let!(:student_in_seat_1) do
+    let!(:user_in_seat_1) do
       attendance = create(:attendance, attended_on: now, seat: 1)
-      create(:student, attendances: [attendance])
+      create(:user, attendances: [attendance])
     end
 
-    let!(:student_in_seat_2) do
+    let!(:user_in_seat_2) do
       attendance = create(:attendance, attended_on: now, seat: 2)
-      create(:student, attendances: [attendance])
+      create(:user, attendances: [attendance])
     end
 
-    let!(:absent_student) do
+    let!(:absent_user) do
       attendance = create(:attendance, attended_on: now - 1.day, seat: 1)
-      create(:student, attendances: [attendance])
+      create(:user, attendances: [attendance])
     end
 
     specify do
-      students = Student.in_seat(1, now)
-      expect(students).to include(student_in_seat_1)
-      expect(students).to_not include(student_in_seat_2)
-      expect(students).to_not include(absent_student)
+      users = User.in_seat(1, now)
+      expect(users).to include(user_in_seat_1)
+      expect(users).to_not include(user_in_seat_2)
+      expect(users).to_not include(absent_user)
     end
   end
 
   describe ".absent" do
-    let!(:present_student) do
+    let!(:present_user) do
       attendance = create(:attendance, attended_on: now, seat: 1)
-      create(:student, attendances: [attendance])
+      create(:user, attendances: [attendance])
     end
 
     let!(:absent_student) do
       attendance = create(:attendance, attended_on: now - 1.day, seat: 1)
-      create(:student, attendances: [attendance])
+      create(:user, attendances: [attendance])
     end
 
     specify do
-      students = Student.absent(now)
-      expect(students).to include(absent_student)
-      expect(students).to_not include(present_student)
+      users = User.absent(now)
+      expect(users).to include(absent_user)
+      expect(users).to_not include(present_user)
     end
   end
 end

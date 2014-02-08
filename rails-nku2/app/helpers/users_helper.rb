@@ -7,7 +7,7 @@ module UsersHelper
       hash = Digest::MD5.hexdigest(user.email)
    
       # compile URL which can be used in <img src="RIGHT_HERE"...
-      image_src = "http://www.gravatar.com/avatar/#{hash}"
+      image_src = "http://www.gravatar.com/avatar/#{hash}?s=150"
     end
   end
 end
