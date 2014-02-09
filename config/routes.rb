@@ -6,9 +6,9 @@ NkuRails::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  #resources :posts do
-  #  resources :comments
-  #end
+  resources :posts do
+    resources :comments
+  end
   
   resources :sessions
   resources :users
