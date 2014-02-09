@@ -1,7 +1,7 @@
 NkuRails::Application.routes.draw do
   get "welcome/index"
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
+  get "signout" => "sessions#destroy", :as => "signout"
+  get "signin" => "sessions#new", :as => "signin"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
