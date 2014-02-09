@@ -1,4 +1,6 @@
 NkuRails::Application.routes.draw do
+  get "new/create"
+  get "new/destroy"
   get "welcome/index"
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
