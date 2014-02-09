@@ -1,13 +1,16 @@
 NkuRails::Application.routes.draw do
   get "welcome/index"
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :posts do
-    resources :comments
-  end
+  #resources :posts do
+  #  resources :comments
+  #end
   
+  resources :sessions
   resources :users
   
   root 'welcome#index'
